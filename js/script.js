@@ -1,55 +1,37 @@
-// Copyright (c) 2025 Adrina Peighambarzadeh All rights reserved
-//
-// Created by: Adrina Peighambarzadeh
-// Created on: Apr 2025
-// This file contains the JS functions for index.html
-/**
- * This function calculates the total cost of a pizza order.
- */
-// eslint-disable-next-line no-unused-vars
+function limitFruitSelection() {
+  const checkboxes = document.querySelectorAll('#fruit-options input[type="checkbox"]');
+  const checked = Array.from(checkboxes).filter(cb => cb.checked);
 
-function calculatePizza() {
-  // input
-  const sizeRadios = document.getElementsByName("size")
-  const toppingRadios = document.getElementsByName("toppings")
-  let sizeCost = 0
-  let toppingCost = 0
+  if (checked.length > 3) {
+    alert("Please only select 3 fruits.");
+    // Uncheck the one that was just clicked
+    event.target.checked = false;
+  }
+}
 
-  // process
-  for (let i = 0; i < sizeRadios.length; i++) {
-    if (sizeRadios[i].checked) {
-      if (sizeRadios[i].value === "large") {
-        sizeCost = 6.0
-      } else if (sizeRadios[i].value === "extraLarge") {
-        sizeCost = 10.0
-      }
-      break
-    }
+function calculateSmoothie() {
+  // Get size
+  const size = document.querySelector('input[name="size"]:checked').value;
+  const sizeCost = size === "small" ? 4.0 : 6.5;
+
+  // Get selected fruits
+  const fruitCheckboxes = document.querySelectorAll('#fruit-options input[type="checkbox"]');
+  const selectedFruits = Array.from(fruitCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+
+  if (selectedFruits.length !== 3) {
+    document.getElementById("result").innerHTML = `<p style="color:red;">You must select exactly 3 fruits.</p>`;
+    return;
   }
 
-  for (let i = 0; i < toppingRadios.length; i++) {
-    if (toppingRadios[i].checked) {
-      const toppingCount = parseInt(toppingRadios[i].value)
-      if (toppingCount === 1) {
-        toppingCost = 1.0
-      } else if (toppingCount === 2) {
-        toppingCost = 1.75
-      } else if (toppingCount === 3) {
-        toppingCost = 2.5
-      } else if (toppingCount === 4) {
-        toppingCost = 3.35
-      }
-      break
-    }
-  }
+  const fruitCost = 2.5;
+  const subtotal = sizeCost + fruitCost;
+  const tax = subtotal * 0.13;
+  const total = subtotal + tax;
 
-  const subtotal = sizeCost + toppingCost
-  const tax = subtotal * 0.13
-  const total = subtotal + tax
-
-  // output
-  document.getElementById("result").innerHTML =
-    "<p><strong>Subtotal:</strong> $" + subtotal.toFixed(2) + "</p>" +
-    "<p><strong>HST (13%):</strong> $" + tax.toFixed(2) + "</p>" +
-    "<p><strong>Total:</strong> $" + total.toFixed(2) + "</p>"
+  document.getElementById("result").innerHTML = `
+    <p><strong>Your Smoothie:</strong> ${selectedFruits.join(", ")}</p>
+    <p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+    <p><strong>HST (13%):</strong> $${tax.toFixed(2)}</p>
+    <p><strong>Total:</strong> $${total.toFixed(2)}</p>
+  `;
 }

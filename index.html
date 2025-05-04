@@ -1,9 +1,73 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Title</title>
-  </head>
-  <body>
-    <p>Paragraph</p>
-  </body>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Pizza Order Calculator, in JS" />
+  <meta name="keywords" content="mths, icd2o" />
+  <meta name="author" content="Adrina Peighamabrzadeh" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.brown-purple.min.css" />
+  <title>Pizza Order Calculator</title>
+</head>
+
+<body>
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script defer src="./js/script.js"></script>
+
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">Pizza Order Calculator</span>
+      </div>
+    </header>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <h4>Select your pizza size:</h4>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="large">
+          <input type="radio" id="large" class="mdl-radio__button" name="size" value="large" checked>
+          <span class="mdl-radio__label">Large ($6.00)</span>
+        </label>
+        <br>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="extraLarge">
+          <input type="radio" id="extraLarge" class="mdl-radio__button" name="size" value="extraLarge">
+          <span class="mdl-radio__label">Extra Large ($10.00)</span>
+        </label>
+
+        <h4>Select number of toppings:</h4>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="t1">
+          <input type="radio" id="t1" class="mdl-radio__button" name="toppings" value="1" checked>
+          <span class="mdl-radio__label">1 Topping ($1.00)</span>
+        </label>
+        <br>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="t2">
+          <input type="radio" id="t2" class="mdl-radio__button" name="toppings" value="2">
+          <span class="mdl-radio__label">2 Toppings ($1.75)</span>
+        </label>
+        <br>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="t3">
+          <input type="radio" id="t3" class="mdl-radio__button" name="toppings" value="3">
+          <span class="mdl-radio__label">3 Toppings ($2.50)</span>
+        </label>
+        <br>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="t4">
+          <input type="radio" id="t4" class="mdl-radio__button" name="toppings" value="4">
+          <span class="mdl-radio__label">4 Toppings ($3.35)</span>
+        </label>
+
+        <br><br>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="calculatePizza()"
+          type="button">
+          Calculate
+        </button>
+
+        <br><br>
+        <div id="result" class="page-content-answer"></div>
+      </div>
+    </main>
+  </div>
+</body>
+
 </html>
